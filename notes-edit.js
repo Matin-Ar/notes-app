@@ -1,10 +1,12 @@
+'use strict'
+
 const noteId = location.hash.substring(1)
 
 let notes = getSavedNotes()
 
 let note = notes.find((note) => note.id === noteId)
 
-if (note === undefined)
+if (!note)
     location.assign('/index.html')
 
 document.querySelector('#time').textContent = generateLastEdited(note.updatedAt)
@@ -40,7 +42,7 @@ window.addEventListener('storage',(e) => {
         
         let note = notes.find((note) => note.id === noteId)
         
-        if (note === undefined)
+        if (!note)
             location.assign('/index.html')
 
         document.querySelector('#note-title').value = note.title
