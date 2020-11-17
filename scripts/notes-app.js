@@ -11,13 +11,14 @@ renderNotes(notes, filters)
 
 document.querySelector('#create-note').addEventListener('click', (e) => {
     const id = uuidv4()
-    const timeStamp = moment().valueOf()
+    const timestamp = moment().valueOf()
+
     notes.push({
         id: id,
         title: '',
         body: '',
-        createdAt: timeStamp, 
-        updatedAt: timeStamp
+        createdAt: timestamp,
+        updatedAt: timestamp
     })
     saveNotes(notes)
     location.assign(`/edit.html#${id}`)
@@ -33,9 +34,9 @@ document.querySelector('#filter-by').addEventListener('change', (e) => {
     renderNotes(notes, filters)
 })
 
-window.addEventListener('storage',(e) => {
-    if(e.key === 'notes'){
+window.addEventListener('storage', (e) => {
+    if (e.key === 'notes') {
         notes = JSON.parse(e.newValue)
-        renderNotes(notes,filters)
+        renderNotes(notes, filters)
     }
 })
